@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-
 	"log"
 
+	dbclient "github.com/shallowravine/Workspace_1.git/client"
 	"github.com/shallowravine/Workspace_1/helper"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -14,7 +14,7 @@ func main() {
 	c := helper.Add(a, b)
 	fmt.Println(c)
 
-	ctx, cancel, client, err := client.createClient
+	ctx, client, err := dbclient.CreateClient()
 
 	databases, err := client.ListDatabaseNames(ctx, bson.M{})
 	if err != nil {
@@ -45,6 +45,8 @@ func main() {
 		log.Println("There was an err in trying to migrate the data into the database")
 
 	}
+	defer client.Disconnect(ctx)
+
 	fmt.Println(insertResult.InsertedIDs)
 
 }
