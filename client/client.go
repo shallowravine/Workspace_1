@@ -11,7 +11,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func createClient() {
+func createClient() (context.Context, context.CancelFunc, *mongo.Client, error) {
+	serverAPIOptions := options.ServerAPI(options.ServerAPIVersion1)
+
 	clientOptions := options.Client().ApplyURI("mongodb+srv://SR_Admin:k7w4dmpjQFw6IXCo@shallowcluster0.xircdzz.mongodb.net/?retryWrites=true&w=majority").SetServerAPIOptions(serverAPIOptions)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

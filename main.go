@@ -1,18 +1,12 @@
 package main
 
 import (
-	"context"
 	"fmt"
 
 	"log"
-	"time"
 
 	"github.com/shallowravine/Workspace_1/helper"
-	"github.com/shallowravine/Workspace_1/client"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 func main() {
@@ -20,13 +14,7 @@ func main() {
 	c := helper.Add(a, b)
 	fmt.Println(c)
 
-	serverAPIOptions := options.ServerAPI(options.ServerAPIVersion1)
-
-	
-
-	ctx, cancel, client, err := 
-
-	
+	ctx, cancel, client, err := client.createClient
 
 	databases, err := client.ListDatabaseNames(ctx, bson.M{})
 	if err != nil {
